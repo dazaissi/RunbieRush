@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Rooftop Rush</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.min.js"></script>
+    <script src="main.js"></script>
+    <script src="TA_scnBoot.js"></script>
+    <script src="TA_scnMenu.js"></script>
+    <script src="TA_scnChooseHero.js"></script>
+    <script src="TA_scnPlay.js"></script>
+    <script src="TA_scnGameOver.js"></script>
+
+
+    <script>
+        const config = {
+            type: Phaser.AUTO,
+            width: WIDTH,
+            height: HEIGHT,
+            parent: 'game-container',
+            backgroundColor: '#1a2340',
+            physics: {
+                default: 'arcade',
+                arcade: { gravity: { y: 0 }, debug: false }
+            },
+            scene: [TA_scnBoot, TA_scnMenu, TA_scnChooseHero, TA_scnPlay, TA_scnGameOver]
+        };
+        const game = new Phaser.Game(config);
+
+        document.getElementById('btnJump').addEventListener('click', () => {
+            const scene = game.scene.getScene('TA_scnPlay');
+            if (scene && scene.isActive()) scene.jump();
+        });
+    </script>
+</body>
+</html>
